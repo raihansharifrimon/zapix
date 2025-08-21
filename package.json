@@ -1,11 +1,11 @@
 {
   "name": "zapix",
-  "version": "0.1.0",
+  "version": "0.1.6",
   "description": "Express-style router for AWS Lambda / API Gateway v2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist/**/*"
   ],
   "scripts": {
     "build": "tsc",
@@ -20,7 +20,7 @@
     "api-gateway",
     "zapix"
   ],
-  "author": "raihansharif.dev@gmail.com",
+  "author": "Raihan Sharif <raihansharif.dev@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
@@ -28,5 +28,13 @@
     "@types/node": "^24.3.0",
     "typescript": "^5.9.2",
     "vitest": "^3.2.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raihansharifrimon/zapix.git"
+  },
+  "bugs": {
+    "url": "https://github.com/raihansharifrimon/zapix/issues"
+  },
+  "homepage": "https://github.com/raihansharifrimon/zapix#readme"
 }

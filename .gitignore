@@ -37,3 +37,5 @@ nyc_output/
 # Optional: temporary files
 *.tmp
 *.swp
+
+.draft
