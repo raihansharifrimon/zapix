@@ -1,6 +1,6 @@
 {
   "name": "zapix",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Express-style router for AWS Lambda / API Gateway v2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
