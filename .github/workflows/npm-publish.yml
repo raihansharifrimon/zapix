@@ -1,0 +1,40 @@
+name: Publish npm package
+
+# Trigger only on published releases
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read        # Needed to checkout code
+      packages: write       # Needed to publish package
+    steps:
+      # 1️⃣ Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2️⃣ Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+
+      # 3️⃣ Authenticate with npm using GitHub Secret
+      - name: Authenticate to npm
+        run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
+
+      # 4️⃣ Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # 5️⃣ Build package (optional if needed)
+      - name: Build package
+        run: npm run build || echo "No build step"
+
+      # 6️⃣ Publish package
+      - name: Publish package
+        run: npm publish

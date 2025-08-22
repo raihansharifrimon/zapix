@@ -36,5 +36,8 @@
   "bugs": {
     "url": "https://github.com/raihansharifrimon/zapix/issues"
   },
-  "homepage": "https://github.com/raihansharifrimon/zapix#readme"
+  "homepage": "https://github.com/raihansharifrimon/zapix#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }

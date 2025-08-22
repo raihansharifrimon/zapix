@@ -1,4 +1,6 @@
-export const safeParseBody = (body: string | null | undefined): string | undefined => {
+export * from './response';
+
+export const safeJsonParse = (body: string | null | undefined): string | undefined => {
 	if (!body) return undefined;
 	try {
 		return JSON.parse(body);
@@ -6,3 +8,4 @@ export const safeParseBody = (body: string | null | undefined): string | undefin
 		return undefined;
 	}
 };
+
