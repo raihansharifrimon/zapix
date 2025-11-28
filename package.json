@@ -1,7 +1,7 @@
 {
   "name": "zapix",
   "version": "0.1.7",
-  "description": "Express-style router for AWS Lambda / API Gateway v2",
+  "description": "Zapix: Lightweight, Express-style router for AWS Lambda and API Gateway v2. Build serverless APIs with middleware, type safety, and minimal setup.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -36,8 +36,5 @@
   "bugs": {
     "url": "https://github.com/raihansharifrimon/zapix/issues"
   },
-  "homepage": "https://github.com/raihansharifrimon/zapix#readme",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  }
+  "homepage": "https://github.com/raihansharifrimon/zapix#readme"
 }

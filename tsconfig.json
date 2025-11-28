@@ -5,12 +5,12 @@
     "emitDeclarationOnly": false,
     "declarationDir": "dist",
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "target": "ES2019",
-    "module": "CommonJS",
+    "module": "nodenext",
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "tests"]
+  "include": ["src", "__TEST__"],
+  "exclude": ["node_modules", "dist", "__TEST__"]
 }
