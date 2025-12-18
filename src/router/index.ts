@@ -19,6 +19,7 @@ export class Router {
 		event: APIGatewayProxyEventV2,
 		context: Context,
 	) => Promise<APIGatewayProxyResultV2> | APIGatewayProxyResultV2;
+	private globalMiddlewares: RouteChainItem[] = [];
 
 	get(path: string, ...handlers: RouteChainItem[]) {
 		this.addRoute('GET', path, handlers);
@@ -47,6 +48,11 @@ export class Router {
 	// 👇 Catch-all if no route matched
 	all(...handlers: RouteChainItem[]) {
 		this.fallbackHandlers = handlers;
+	}
+
+	// Global middleware
+	use(...middlewares: RouteChainItem[]) {
+		this.globalMiddlewares.push(...middlewares);
 	}
 
 	// 👇 Catch-all error
@@ -82,8 +88,13 @@ export class Router {
 
 		event.body = safeJsonParse(body as string);
 
+		const handlers: RouteChainItem[] = [
+			...this.globalMiddlewares,
+			...(route ? route.handlers : this.fallbackHandlers),
+		];
+
+		// const handlers = route ? route.handlers : this.fallbackHandlers;
 		let index = 0;
-		const handlers = route ? route.handlers : this.fallbackHandlers;
 
 		const run = async (err?: any): Promise<APIGatewayProxyResultV2 | undefined> => {
 			if (err) {
