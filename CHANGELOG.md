@@ -9,6 +9,14 @@ and [Semantic Versioning](https://semver.org/).
 - Planned features and improvements
 
 
+## [0.1.9] - 2025-12-18
+### Added
+- Global middleware support
+- Updated documentation with usage examples of global middleware.
+
+### Changed
+- n/a
+
 ## [0.1.8] - 2025-11-29
 ### Added
 - Improved `Response()` utility:

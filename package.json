@@ -1,6 +1,6 @@
 {
   "name": "zapix",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Zapix: Lightweight, Express-style router for AWS Lambda and API Gateway v2. Build serverless APIs with middleware, type safety, and minimal setup.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

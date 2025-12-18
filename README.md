@@ -169,6 +169,81 @@ router.post('/users', authMiddleware, createUser);
 
 ---
 
+### 🧱➡️ Global Middleware
+
+The Router supports **global middleware**, allowing you to run middleware logic **before any route-specific middleware or handler**.
+
+This is useful for cross-cutting concerns such as authentication, logging, request validation, rate limiting, and request context setup.
+
+#### Registering Global Middleware
+
+Use `router.use()` to register one or more global middleware functions.
+
+```tsx
+const router = new Router();
+
+router.use(async (event, context, next) => {
+  console.log(event, context);
+  await next();
+});
+```
+
+Global middleware runs for **every request**, regardless of route. Global middleware fully supports async/await:
+
+
+#### Middleware Signature
+
+Global middleware uses the same signature as route middleware:
+
+```tsx
+(event, context, next) =>Promise<void |APIGatewayProxyResultV2>
+```
+
+- `event` – API Gateway event
+- `context` – Lambda context
+- `next(error?)` – Continues execution or triggers error handling
+
+
+#### Execution Order
+
+Middleware and handlers execute in the following order:
+
+1. **Global middleware** (in registration order)
+2. **Route-level middleware**
+3. **Route handler**
+4. **Error handler** (if an error occurs)
+
+Example:
+
+```tsx
+router.use(globalMiddleware);
+
+router.get('/example', routeMiddleware, handler);
+```
+
+Execution order:
+
+```
+globalMiddleware → routeMiddleware → handler
+```
+
+#### Example: Auth + Logging
+
+```tsx
+router.use(async (event, context, next) => {
+  console.log('Incoming request:', event);
+  await next();
+});
+
+router.use(async (event, context, next) => {
+    if (!event.headers?.authorization) {
+      throw new Error('Unauthorized');
+    }
+    await next();
+});
+```
+---
+
 ### 🛡 Request Validation Example (Zod + Middleware)
 
 Payload validation is a common middleware use-case. Zapix middleware makes it simple & easy.
